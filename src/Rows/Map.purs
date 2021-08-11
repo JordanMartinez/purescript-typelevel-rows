@@ -7,7 +7,7 @@ import Type.Proxy (Proxy)
 -- | Indicates an entity used as the tag parameter for the `MapRowTag` class.
 data MapRowTagKind
 
--- | Used in `MapRow` to determine how to transform the input row's symbol and/or kind 
+-- | Used in `MapRow` to determine how to transform the input row's symbol and/or kind
 -- | to the output row's symbol and/or kind.
 class MapRowTag :: forall k1 k2. MapRowTagKind -> Symbol -> k1 -> Symbol -> k2 -> Constraint
 class MapRowTag tag fromSym fromK toSym toK | tag fromSym fromK -> toSym toK
@@ -33,7 +33,7 @@ foreign import data Wrap :: forall k1 k2. (k1 -> k2) -> MapRowTagKind
 -- data Wrap f
 instance MapRowTag (Wrap f) sym a sym (f a)
 
--- | Tag for `MapRow` that works on homogenous and heterogenous rows 
+-- | Tag for `MapRow` that works on homogenous and heterogenous rows
 -- | (as long as `f` is the outmost kind in each label-kind association).
 -- |
 -- | - `Unwrap Array` - `(a :: Array from1, b :: Array from2)` -> `(a :: from1, b :: from2)`
@@ -92,7 +92,7 @@ instance
 class MapRow' :: forall k1 k2. MapRowTagKind -> RL.RowList k1 -> Row k2 -> Constraint
 class MapRow' tag rl toRow | tag rl -> toRow
 
-instance MapRow' tag RL.Nil empty
+instance MapRow' tag RL.Nil ()
 
 -- 1. Recursively call `MapRow` on the tail of the row list to get `toTail`
 -- 2. Use `MapRowTag`'s tag to determine what `toSym` and `toK` should be
