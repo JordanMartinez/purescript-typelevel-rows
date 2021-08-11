@@ -1,7 +1,7 @@
 module Test.Rows where
 
 import Prim.Symbol as Symbol
-import Rows.Map (class MapRow, class MapRowTag, Compose, Const, FromTo, Swap, ToProxy, ToSym, Unwrap, Wrap)
+import Rows.Map (class MapRow, class MapRowTag, Compose, Const, FromTo, MapRowTagKind, Swap, ToProxy, ToSym, Unwrap, Wrap)
 import Type.Proxy (Proxy(..))
 
 data Either l r 
@@ -87,7 +87,7 @@ testToProxy = test heterogenous
 -- This last test just shows how one could use `MapRow` to transform the labels in a row
 
 -- | Appends "foo" to each label in a row
-data AppendFoo
+foreign import data AppendFoo :: MapRowTagKind
 
 instance
   ( Symbol.Append symFrom "foo" symTo
