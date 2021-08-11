@@ -4,4 +4,4 @@ Provides two type classes that work in tandem with one another to compute a deri
 - `MapRow`
 - `MapRowTag`
 
-See the [./tests/Rows.purs](./tests/Rows.purs) for some examples.
+See the [./tests/Test/Rows.purs](./tests/Test/Rows.purs) for some examples.
